@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\HTL\\Unterricht\\SJ2223\\56BAIF\\SJ22-23-56BAIF-POS\\Spg.ValueTypesExercise.App\\Spg.ValueTypesExercise.App.csproj": {}
+    "C:\\HTL\\Unterricht\\SJ2223\\56BAIF\\SJ22-23-56BAIF-POS\\Uebung_01\\Spg.ValueTypesExercise.App\\Spg.ValueTypesExercise.App.csproj": {}
   },
   "projects": {
-    "C:\\HTL\\Unterricht\\SJ2223\\56BAIF\\SJ22-23-56BAIF-POS\\Spg.ValueTypesExercise.App\\Spg.ValueTypesExercise.App.csproj": {
+    "C:\\HTL\\Unterricht\\SJ2223\\56BAIF\\SJ22-23-56BAIF-POS\\Uebung_01\\Spg.ValueTypesExercise.App\\Spg.ValueTypesExercise.App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\HTL\\Unterricht\\SJ2223\\56BAIF\\SJ22-23-56BAIF-POS\\Spg.ValueTypesExercise.App\\Spg.ValueTypesExercise.App.csproj",
+        "projectUniqueName": "C:\\HTL\\Unterricht\\SJ2223\\56BAIF\\SJ22-23-56BAIF-POS\\Uebung_01\\Spg.ValueTypesExercise.App\\Spg.ValueTypesExercise.App.csproj",
         "projectName": "Spg.ValueTypesExercise.App",
-        "projectPath": "C:\\HTL\\Unterricht\\SJ2223\\56BAIF\\SJ22-23-56BAIF-POS\\Spg.ValueTypesExercise.App\\Spg.ValueTypesExercise.App.csproj",
+        "projectPath": "C:\\HTL\\Unterricht\\SJ2223\\56BAIF\\SJ22-23-56BAIF-POS\\Uebung_01\\Spg.ValueTypesExercise.App\\Spg.ValueTypesExercise.App.csproj",
         "packagesPath": "C:\\Users\\marti\\.nuget\\packages\\",
-        "outputPath": "C:\\HTL\\Unterricht\\SJ2223\\56BAIF\\SJ22-23-56BAIF-POS\\Spg.ValueTypesExercise.App\\obj\\",
+        "outputPath": "C:\\HTL\\Unterricht\\SJ2223\\56BAIF\\SJ22-23-56BAIF-POS\\Uebung_01\\Spg.ValueTypesExercise.App\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
