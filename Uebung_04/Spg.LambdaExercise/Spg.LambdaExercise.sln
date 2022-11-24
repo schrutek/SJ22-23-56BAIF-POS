@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spg.LambdaExercise.App", "Spg.LambdaExercise.App\Spg.LambdaExercise.App.csproj", "{DF555D3E-AE8D-472A-871B-F56DF7927DE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF555D3E-AE8D-472A-871B-F56DF7927DE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF555D3E-AE8D-472A-871B-F56DF7927DE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF555D3E-AE8D-472A-871B-F56DF7927DE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF555D3E-AE8D-472A-871B-F56DF7927DE9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB85C604-A163-4364-83FF-982D344ADCA8}
+	EndGlobalSection
+EndGlobal

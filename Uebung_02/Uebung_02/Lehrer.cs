@@ -29,7 +29,6 @@
                 {
                     return Zuname?.ToUpper() ?? string.Empty;
                 }
-                //return Zuname?.Substring(0, 3)?.ToUpper() ?? string.Empty;
                 return Zuname?[..3]?.ToUpper() ?? string.Empty;
             }
         }

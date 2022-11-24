@@ -55,6 +55,15 @@ namespace ExProperties.App
             // Teste das Kürzel
             result = (l2.Kuerzel == "EIF" && l3.Kuerzel == "");
             Console.WriteLine($"Kuerzel OK: {result}");
+
+            string s = "HelLo World!"[3..^4];
+
+            Console.WriteLine(s);
+
+
+
+
+
             Console.ReadLine();
         }
     }
