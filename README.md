@@ -26,7 +26,7 @@ Features:
 
 | a | b | c |
 |---|---|---|
-| 1 | 2 | 3 |
+| 1 | 2 - |
 
 ### Ein ID-Property
 
