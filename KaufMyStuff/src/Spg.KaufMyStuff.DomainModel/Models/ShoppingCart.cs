@@ -11,19 +11,18 @@ namespace Spg.KaufMyStuff.DomainModel.Models
     
     public class ShoppingCart : EntityBase
     {
-        public int Id { get; }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public decimal Sum { get; }
+        public decimal Sum { get; private set; }
         public ShoppingCartStates ShoppingCartState { get; set; }
-        public DateTime CreationDate { get; }
+        public DateTime CreationDate { get; private set; }
         
         private List<ShoppingCartItem> _shoppingCartItems = new();
 
         public IReadOnlyList<ShoppingCartItem> ShoppingCartItems => _shoppingCartItems;  
 
-        public int CustomerNavigationId { get; }
-        public Customer CustomerNavigation { get; } = default!;
+        public int CustomerNavigationId { get; private set; }
+        public Customer CustomerNavigation { get; private set; } = default!;
 
         public ShoppingCart(string name, string description, ShoppingCartStates shoppingCartState)
         {

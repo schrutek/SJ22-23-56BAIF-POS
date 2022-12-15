@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 
 namespace Spg.KaufMyStuff.DomainModel.Models
 {
-    public class EntityBase
-    {
-        public int Id { get; private set; }
-        public DateTime? LastChangeDate { get; set; }
-    }
+    public record Address(string StreetName, string HouseNumber, string City, string Zip)
+    { }
 }
