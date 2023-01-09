@@ -21,13 +21,20 @@ namespace Spg.KaufMyStuff.DomainModel.Test
             return db;
         }
 
+        [Fact]
+        public void SeedDb() 
+        {
+            KaufMyStuffContext db = CreateDb();
+            db.Seed();
+        }
+
         // Tripple A-Pattern AAA
         [Fact]
         public void Product_Add_SuccessTest()
         {
             // 1. Arrange
             KaufMyStuffContext db = CreateDb();
-            Product newProduct = new Product("Testprodukt", 12.50M, 20, "123456798", "Testmaterial", DateTime.Now);
+            Product newProduct = new Product("Testprodukt", 20, "123456798", "Testmaterial", DateTime.Now, null);
 
             // 2. Act
             db.Products.Add(newProduct);

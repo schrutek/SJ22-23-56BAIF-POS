@@ -8,13 +8,18 @@ namespace Spg.KaufMyStuff.DomainModel.Models
 {
     public class ShoppingCartItem : EntityBase
     {
-        public int ProductNavigationId { get; private set;  }
-        public Product ProductNavigation { get; } = default!;
+        public int ShoppingCartNavigationId { get; set; }
+        public virtual ShoppingCart ShoppingCartNavigation { get; set; } = default!;
+        public int ProductNavigationId { get; set; }
+        public virtual Product ProductNavigation { get; set; } = default!;
 
-        public int ShoppingCartNavigationId { get; private set; }
-        public ShoppingCart ShoppingCart { get; private set; } = default!;
-
-        public ShoppingCartItem()
+        protected ShoppingCartItem()
         { }
+
+        public ShoppingCartItem(ShoppingCart shoppingCartNavigation, Product productNavigation)
+        {
+            ShoppingCartNavigation = shoppingCartNavigation;
+            ProductNavigation = productNavigation;
+        }
     }
 }
