@@ -33,3 +33,73 @@ Features:
 ```C#
 public int Id { get; set; }
 ```
+xxx
+
+```plantuml
+
+@startuml
+
+class Shop {
+    Name: string
+    Guid: Guid
+    void Add(newShop: Shop)
+}
+
+class Category {
+
+}
+
+class CatPriceType {
+
+}
+
+class Customer {
+
+}
+
+class EntityBase {
+    Id: int
+}
+
+class Price {
+
+}
+
+class Product {
+
+}
+
+class ShoppingCart {
+
+}
+
+class ShoppingCartItem {
+
+}
+
+class Address {
+
+}
+
+Shop <|-- EntityBase
+Category <|-- EntityBase
+CatPriceType  <|-- EntityBase
+Price  <|-- EntityBase
+ShoppingCart <|-- EntityBase
+ShoppingCartItem <|-- EntityBase
+Customer  <|-- EntityBase
+
+Shop *-- Category
+Category *-- Product
+Product *-- Price
+Product *-- ShoppingCartItem
+ShoppingCart *-- ShoppingCartItem
+Customer *-- ShoppingCart
+
+Price -- CatPriceType
+Customer -- Address
+Shop -- Address
+
+@enduml
+
+```

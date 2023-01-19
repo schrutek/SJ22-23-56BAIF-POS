@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.Infrastructure", "src\Spg.KaufMyStuff.Infrastructure\Spg.KaufMyStuff.Infrastructure.csproj", "{27E4F931-696D-4EF6-8749-D1370CE193A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spg.KaufMyStuff.DomainModel.Test", "src\Spg.KaufMyStuff.DomainModel.Test\Spg.KaufMyStuff.DomainModel.Test.csproj", "{12C5D1F4-209F-44C6-B830-73C76B50C7AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.DomainModel.Test", "src\Spg.KaufMyStuff.DomainModel.Test\Spg.KaufMyStuff.DomainModel.Test.csproj", "{12C5D1F4-209F-44C6-B830-73C76B50C7AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spg.KaufMyStuff.LinqDemo", "src\Spg.KaufMyStuff.LinqDemo\Spg.KaufMyStuff.LinqDemo.csproj", "{312C5A5A-DF46-4AF1-B6EB-805CFDA3BEAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{12C5D1F4-209F-44C6-B830-73C76B50C7AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12C5D1F4-209F-44C6-B830-73C76B50C7AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12C5D1F4-209F-44C6-B830-73C76B50C7AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{312C5A5A-DF46-4AF1-B6EB-805CFDA3BEAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{312C5A5A-DF46-4AF1-B6EB-805CFDA3BEAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{312C5A5A-DF46-4AF1-B6EB-805CFDA3BEAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{312C5A5A-DF46-4AF1-B6EB-805CFDA3BEAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
