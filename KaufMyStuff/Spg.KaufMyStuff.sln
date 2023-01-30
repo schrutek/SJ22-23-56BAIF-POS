@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.Infrastruct
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.DomainModel.Test", "src\Spg.KaufMyStuff.DomainModel.Test\Spg.KaufMyStuff.DomainModel.Test.csproj", "{12C5D1F4-209F-44C6-B830-73C76B50C7AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spg.KaufMyStuff.LinqDemo", "src\Spg.KaufMyStuff.LinqDemo\Spg.KaufMyStuff.LinqDemo.csproj", "{312C5A5A-DF46-4AF1-B6EB-805CFDA3BEAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.LinqDemo", "src\Spg.KaufMyStuff.LinqDemo\Spg.KaufMyStuff.LinqDemo.csproj", "{312C5A5A-DF46-4AF1-B6EB-805CFDA3BEAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spg.KaufMyStuff.Repositories", "src\Spg.KaufMyStuff.Repositories\Spg.KaufMyStuff.Repositories.csproj", "{2517170A-8737-47E9-ADC3-CDB259B0502F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spg.KaufMyStuff.DiDemoConsole", "src\Spg.KaufMyStuff.DiDemoConsole\Spg.KaufMyStuff.DiDemoConsole.csproj", "{1343778E-4456-45E2-8A3B-F10254CCBF24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{312C5A5A-DF46-4AF1-B6EB-805CFDA3BEAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{312C5A5A-DF46-4AF1-B6EB-805CFDA3BEAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{312C5A5A-DF46-4AF1-B6EB-805CFDA3BEAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2517170A-8737-47E9-ADC3-CDB259B0502F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2517170A-8737-47E9-ADC3-CDB259B0502F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2517170A-8737-47E9-ADC3-CDB259B0502F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2517170A-8737-47E9-ADC3-CDB259B0502F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1343778E-4456-45E2-8A3B-F10254CCBF24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1343778E-4456-45E2-8A3B-F10254CCBF24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1343778E-4456-45E2-8A3B-F10254CCBF24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1343778E-4456-45E2-8A3B-F10254CCBF24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

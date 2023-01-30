@@ -37,13 +37,46 @@ Shop? result04 = db.Shops.SingleOrDefault(s => s.Id == 3);
 // Liste alle Products auf, mit dem PriceType ShortName='Aktion'
 var result05 = db.Products.Where(p => p.Prices.Any(p => p.CatPriceTypeNavigation.ShortName == "Aktion"));
 
+var sortOrder = "asc";
+
+var result06 = db.Set<Product>().AsQueryable();
+
+// Do Something
+
+if (true)
+{
+    result06 = result06.Where(p => p.Name.ToLower().Contains("awesome"));
+}
+
+// Do Something
+
+result06 = result06.Where(p => p.Prices.Any(p => p.CatPriceTypeNavigation.Description == "Aktion"));
+
+// Do Something
+
+if (sortOrder == "asc")
+{
+    result06 = result06.OrderBy(p => p.Name);
+}
+else
+{
+    result06 = result06.OrderByDescending(p => p.Name);
+}
+
+// Do Something
+
+var finalResult = result06.Select(p => new { p.Name, p.ExpiryDate, p.Material });
+
+
 
 Console.ReadLine();
 
-int? x = null;
-Nullable<int> y = null;
-
-
+public class ProductDto
+{
+    public string Name { get; set; }
+    public DateTime? ExpiryDate { get; set; }
+    public string Material { get; set; }
+}
 
 
 // Liste aller Students mit dem Nachnamen like 'o' der Klasse 4711 absteigend sortiert
@@ -51,7 +84,7 @@ Nullable<int> y = null;
 //var result = db.Students
 //    .Where(s => s.LastName.ToLower().Contains("o") && s.SchoolClassNavigation.Id = 4711)
 //    .OrderByDescending(s => s.LastName)
-//    .Select(s => new { s.FirstName, s.LastName });
+//    .Select(s => new StudentDto() { s.FirstName, s.LastName });
 
 // SQL (wird aus LinQ erstellt)
 // select t.FirstName, t.LastName

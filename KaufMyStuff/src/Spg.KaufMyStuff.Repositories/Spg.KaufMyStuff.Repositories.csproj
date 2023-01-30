@@ -9,7 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Spg.KaufMyStuff.DomainModel\Spg.KaufMyStuff.DomainModel.csproj" />
     <ProjectReference Include="..\Spg.KaufMyStuff.Infrastructure\Spg.KaufMyStuff.Infrastructure.csproj" />
-    <ProjectReference Include="..\Spg.KaufMyStuff.Repositories\Spg.KaufMyStuff.Repositories.csproj" />
   </ItemGroup>
 
 </Project>
