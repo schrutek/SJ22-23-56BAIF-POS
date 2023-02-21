@@ -10,5 +10,8 @@ namespace Spg.KaufMyStuff.DomainModel.Models
     {
         public string ProductName { get; set; } = string.Empty;
         public string Ean13 { get; set; } = string.Empty;
+        
+        
+        public string SelectedName { get; set; } = string.Empty;
     }
 }

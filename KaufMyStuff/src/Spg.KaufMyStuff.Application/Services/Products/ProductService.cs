@@ -10,9 +10,21 @@ namespace Spg.KaufMyStuff.Application.Services.Products
 {
     public class ProductService
     {
+        private readonly IProductRepository _productRepository;
+
+        public ProductService(IProductRepository productRepository)
+        {
+            _productRepository = productRepository;
+        }
+
+        public void Create()
+        {
+            
+        }
+
         public IQueryable<Product> GetAll()
         {
-            return new ProductRepository().GetAll();
+            return null;
         }
     }
 }

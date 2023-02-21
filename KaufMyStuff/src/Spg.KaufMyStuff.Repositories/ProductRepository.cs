@@ -4,19 +4,23 @@ using Spg.KaufMyStuff.Infrastructure;
 
 namespace Spg.KaufMyStuff.Repositories
 {
-    public class ProductRepository
+    public class ProductRepository : IProductRepository
     {
+        private readonly KaufMyStuffContext _db;
+
+        public ProductRepository(KaufMyStuffContext db)
+        {
+            _db = db;
+        }
+
+        public void Create(Product newProduct)
+        {
+            
+        }
+
         public IQueryable<Product> GetAll()
         {
-            DbContextOptionsBuilder options = new DbContextOptionsBuilder();
-            options.UseSqlite("Data Source=KaufMyStuff.db");
-
-            KaufMyStuffContext db = new KaufMyStuffContext(options.Options);
-            db.Database.EnsureDeleted();
-            db.Database.EnsureCreated();
-            db.Seed();
-
-            return db.Products;
+            return null;
         }
     }
 }
