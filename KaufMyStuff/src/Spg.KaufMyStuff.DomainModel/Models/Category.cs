@@ -9,12 +9,14 @@ namespace Spg.KaufMyStuff.DomainModel.Models
     public class Category : EntityBase
     {
         protected Category() { }
-        public Category(string name, Shop shop)
+        public Category(string name, Guid guid, Shop shop)
         {
+            Guid = guid;
             Name = name;
             ShopNavigation = shop;
         }
 
+        public Guid Guid { get; set; }
         public string Name { get; set; }
 
 

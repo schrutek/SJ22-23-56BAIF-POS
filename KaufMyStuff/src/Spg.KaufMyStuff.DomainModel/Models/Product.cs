@@ -1,7 +1,17 @@
 ﻿namespace Spg.KaufMyStuff.DomainModel.Models
 {
-    public class Product
+    public partial class Product
     {
+        public void SetIF(string @if)
+        {
+            @if = "Instant Food";
+        }
+        // Alle Methoden
+    }
+
+    public partial class Product
+    {
+        // Alle properties
         public string Name { get; private set; } = string.Empty;
         public int Tax { get; set; }
         public string Ean { get; set; } = string.Empty;

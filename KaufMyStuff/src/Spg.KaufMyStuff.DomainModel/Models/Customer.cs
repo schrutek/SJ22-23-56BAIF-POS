@@ -9,6 +9,7 @@ namespace Spg.KaufMyStuff.DomainModel.Models
 {
     public class Customer : EntityBase
     {
+        public Guid Guid { get; }
         public Genders Gender { get; set; }
         public long CustomerNumber { get; private set; }
         public string FirstName { get; set; } = string.Empty;
@@ -24,14 +25,18 @@ namespace Spg.KaufMyStuff.DomainModel.Models
 
         protected Customer()
         { }
-        public Customer(Genders gender,
+        public Customer(
+            Guid guid,
+            Genders gender,
             long customerNumber,
             string firstName,
             string lastName,
             string eMail,
             DateTime birthDate,
-            DateTime registrationDateTime)
+            DateTime registrationDateTime,
+            Address? address)
         {
+            Guid = guid;
             Gender = gender;
             CustomerNumber = customerNumber;
             FirstName = firstName;
@@ -39,6 +44,7 @@ namespace Spg.KaufMyStuff.DomainModel.Models
             EMail = eMail;
             BirthDate = birthDate;
             RegistrationDateTime = registrationDateTime;
+            Address = address;
         }
     }
 }

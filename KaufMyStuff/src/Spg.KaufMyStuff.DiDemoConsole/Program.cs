@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Spg.KaufMyStuff.Application.Services;
 using Spg.KaufMyStuff.Application.Services.Products;
 using Spg.KaufMyStuff.DomainModel.Models;
 using Spg.KaufMyStuff.Infrastructure;
@@ -12,7 +13,7 @@ db.Database.EnsureDeleted();
 db.Database.EnsureCreated();
 db.Seed();
 
-IQueryable<Product> result = new ProductService(new ProductRepository(db)).GetAll();
+IQueryable<Product> result = new ProductService(new RepositoryBase<Product>(db), new RepositoryBase<Product>(db), new DateTimeService()).GetAll();
 
 foreach (Product p in result.ToList())
 {

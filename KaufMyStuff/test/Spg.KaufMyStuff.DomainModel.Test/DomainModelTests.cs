@@ -12,7 +12,7 @@ namespace Spg.KaufMyStuff.DomainModel.Test
         private KaufMyStuffContext CreateDb()
         {
             DbContextOptionsBuilder options = new DbContextOptionsBuilder();
-            options.UseSqlite("Data Source=KaufMyStuff.db");
+            options.UseSqlite("Data Source=KaufMyStuff_Test.db");
 
             KaufMyStuffContext db = new KaufMyStuffContext(options.Options);
             db.Database.EnsureDeleted();

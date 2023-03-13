@@ -75,25 +75,25 @@ namespace Spg.KaufMyStuff.Infrastructure
 
             List<Customer> customers = new Faker<Customer>("de").CustomInstantiator(f =>
                 new Customer(
+                    f.Random.Guid(),
                     f.Random.Enum<Genders>(),
                     f.Random.Long(111111, 999999),
                     f.Name.FirstName(Bogus.DataSets.Name.Gender.Female),
                     f.Name.LastName(),
                     f.Internet.Email(),
                     f.Date.Between(DateTime.Now.AddYears(-60), DateTime.Now.AddYears(-16)),
-                    f.Date.Between(DateTime.Now.AddYears(-10), DateTime.Now.AddDays(-2))
-                ))
+                    f.Date.Between(DateTime.Now.AddYears(-10), DateTime.Now.AddDays(-2)),
+                    new Address(
+                        f.Address.StreetName(),
+                        f.Address.BuildingNumber(),
+                        f.Address.ZipCode(),
+                        f.Address.City())))
                 .Rules((f, c) =>
                 {
                     if (c.Gender == Genders.Male)
                     {
                         c.FirstName = f.Name.FirstName(Bogus.DataSets.Name.Gender.Male);
                     }
-                    c.Address = new Address(
-                        f.Address.StreetName(),
-                        f.Address.BuildingNumber(),
-                        f.Address.ZipCode(),
-                        f.Address.City());
                     c.PhoneNumber = f.Phone.PhoneNumber();
                     c.LastChangeDate = f.Date.Between(new DateTime(2020, 01, 01), DateTime.Now).Date.OrNull(f, 0.3f);
                 })
@@ -126,7 +126,7 @@ namespace Spg.KaufMyStuff.Infrastructure
 
 
             List<Category> categories = new Faker<Category>("de").CustomInstantiator(f =>
-                new Category("", f.Random.ListItem(shops)) //f.Random.ListItem(f.Commerce.Categories)
+                new Category("", f.Random.Guid(), f.Random.ListItem(shops)) //f.Random.ListItem(f.Commerce.Categories)
             )
             .Rules((f, c) =>
             {

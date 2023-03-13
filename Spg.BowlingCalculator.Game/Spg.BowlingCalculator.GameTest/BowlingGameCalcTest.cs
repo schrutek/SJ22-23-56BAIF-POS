@@ -63,17 +63,95 @@ namespace Spg.BowlingCalculator.GameTest
             Assert.Throws<BowlingGameException>(() => unitToTest.Roll(-1));
         }
 
-        //private static void Throws<T>(Action testCode) where T: Exception
-        //{
-        //    try
-        //    {
-        //        testCode();
-        //        // Mache das Ergebis rot
-        //    }
-        //    catch (T ex)
-        //    {
-        //        // Mache das Ergebis grün
-        //    }
-        //}
+        [Fact]
+        private void VerifyNoRoll_FrameIsOne()
+        {
+            // Arrange
+            BowlingGameCal unitToTest = new BowlingGameCal();
+
+            // Act
+            int actual = unitToTest.CurrentFrame;
+
+            // Assert
+            Assert.Equal(1, actual);
+        }
+
+        [Fact]
+        private void VerifyOneRoll_FrameIsOne()
+        {
+            // Arrange
+            BowlingGameCal unitToTest = new BowlingGameCal();
+
+            // Act
+            int result = unitToTest.Roll(2);
+            int actual = unitToTest.CurrentFrame;
+
+            // Assert
+            Assert.Equal(1, actual);
+        }
+
+        [Fact]
+        private void VerifyTwoRoll_FrameIsTwo()
+        {
+            // Arrange
+            BowlingGameCal unitToTest = new BowlingGameCal();
+
+            // Act
+            int result1 = unitToTest.Roll(2);
+            int result2 = unitToTest.Roll(2);
+            int actual = unitToTest.CurrentFrame;
+
+            // Assert
+            Assert.Equal(2, actual);
+        }
+
+        [Fact]
+        private void VerifyThreeRoll_FrameIsTwo()
+        {
+            // Arrange
+            BowlingGameCal unitToTest = new BowlingGameCal();
+
+            // Act
+            int result1 = unitToTest.Roll(2);
+            int result2 = unitToTest.Roll(2);
+            int result3 = unitToTest.Roll(2);
+            int actual = unitToTest.CurrentFrame;
+
+            // Assert
+            Assert.Equal(2, actual);
+        }
+
+        [Fact]
+        private void VerifyFourRoll_FrameIsThree()
+        {
+            // Arrange
+            BowlingGameCal unitToTest = new BowlingGameCal();
+
+            // Act
+            int result1 = unitToTest.Roll(2);
+            int result2 = unitToTest.Roll(2);
+            int result3 = unitToTest.Roll(2);
+            int result4 = unitToTest.Roll(2);
+            int actual = unitToTest.CurrentFrame;
+
+            // Assert
+            Assert.Equal(3, actual);
+        }
+
+        [Fact]
+        private void VerifyThreeRoll_LastStrike_FrameIsThree()
+        {
+            // Arrange
+            BowlingGameCal unitToTest = new BowlingGameCal();
+
+            // Act
+            int result1 = unitToTest.Roll(2);
+            int result2 = unitToTest.Roll(2);
+            int result3 = unitToTest.Roll(10);
+            int actual = unitToTest.CurrentFrame;
+
+            // Assert
+            Assert.Equal(3, actual);
+        }
     }
 }

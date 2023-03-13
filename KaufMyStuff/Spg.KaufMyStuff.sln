@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.Infrastructure", "src\Spg.KaufMyStuff.Infrastructure\Spg.KaufMyStuff.Infrastructure.csproj", "{27E4F931-696D-4EF6-8749-D1370CE193A1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.DomainModel.Test", "src\Spg.KaufMyStuff.DomainModel.Test\Spg.KaufMyStuff.DomainModel.Test.csproj", "{12C5D1F4-209F-44C6-B830-73C76B50C7AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.DomainModel.Test", "test\Spg.KaufMyStuff.DomainModel.Test\Spg.KaufMyStuff.DomainModel.Test.csproj", "{12C5D1F4-209F-44C6-B830-73C76B50C7AF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.LinqDemo", "src\Spg.KaufMyStuff.LinqDemo\Spg.KaufMyStuff.LinqDemo.csproj", "{312C5A5A-DF46-4AF1-B6EB-805CFDA3BEAE}"
 EndProject
@@ -17,9 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.Repositorie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.DiDemoConsole", "src\Spg.KaufMyStuff.DiDemoConsole\Spg.KaufMyStuff.DiDemoConsole.csproj", "{1343778E-4456-45E2-8A3B-F10254CCBF24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spg.KaufMyStuff.MvcFrontEnd", "src\Spg.KaufMyStuff.MvcFrontEnd\Spg.KaufMyStuff.MvcFrontEnd.csproj", "{84293193-16DE-43C6-826B-106FE9E84B9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.MvcFrontEnd", "src\Spg.KaufMyStuff.MvcFrontEnd\Spg.KaufMyStuff.MvcFrontEnd.csproj", "{84293193-16DE-43C6-826B-106FE9E84B9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spg.KaufMyStuff.RazorPages", "src\Spg.KaufMyStuff.RazorPages\Spg.KaufMyStuff.RazorPages.csproj", "{5D93389F-CB35-4170-9C48-1D49BB6FD6E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.RazorPages", "src\Spg.KaufMyStuff.RazorPages\Spg.KaufMyStuff.RazorPages.csproj", "{5D93389F-CB35-4170-9C48-1D49BB6FD6E0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.Repository.Test", "test\Spg.KaufMyStuff.Repository.Test\Spg.KaufMyStuff.Repository.Test.csproj", "{54792CCD-9255-4546-9F9D-4AD2D8F70E4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spg.KaufMyStuff.Application.Test", "test\Spg.KaufMyStuff.Application.Test\Spg.KaufMyStuff.Application.Test.csproj", "{698595BE-217C-4431-A0A0-9E35115DF9EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +67,14 @@ Global
 		{5D93389F-CB35-4170-9C48-1D49BB6FD6E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D93389F-CB35-4170-9C48-1D49BB6FD6E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D93389F-CB35-4170-9C48-1D49BB6FD6E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54792CCD-9255-4546-9F9D-4AD2D8F70E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54792CCD-9255-4546-9F9D-4AD2D8F70E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54792CCD-9255-4546-9F9D-4AD2D8F70E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54792CCD-9255-4546-9F9D-4AD2D8F70E4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{698595BE-217C-4431-A0A0-9E35115DF9EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{698595BE-217C-4431-A0A0-9E35115DF9EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{698595BE-217C-4431-A0A0-9E35115DF9EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{698595BE-217C-4431-A0A0-9E35115DF9EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
