@@ -1,6 +1,7 @@
 using Moq;
 using Spg.KaufMyStuff.Application.Services.Products;
 using Spg.KaufMyStuff.Application.Test.Helpers;
+using Spg.KaufMyStuff.DomainModel.Dtos;
 using Spg.KaufMyStuff.DomainModel.Exceptions;
 using Spg.KaufMyStuff.DomainModel.Interfaces;
 using Spg.KaufMyStuff.DomainModel.Models;
@@ -20,8 +21,9 @@ namespace Spg.KaufMyStuff.Application.Test
                 DatabaseUtilities.InitializeDatabase(db);
                 IRepositoryBase<Product> productRepo = new RepositoryBase<Product>(db);
                 IReadOnlyRepositoryBase<Product> readOnlyRroductRepo = new RepositoryBase<Product>(db);
-                ProductService unitToTest = new ProductService(productRepo, readOnlyRroductRepo, new DateTimeServiceMock());
-                Product newProduct = new Product("Test Product 02", 20, "1234567890123", "Testmaterial", new DateTime(2023, 03, 17), db.Categories.Single(c => c.Id == 1));
+                IReadOnlyRepositoryBase<Category> readOnlyCategoryRepo = new RepositoryBase<Category>(db);
+                ProductService unitToTest = new ProductService(productRepo, readOnlyRroductRepo, readOnlyCategoryRepo, new DateTimeServiceMock());
+                CreateProductDto newProduct = new CreateProductDto("Test Product 02", 20, "1234567890123", "Testmaterial", new DateTime(2023, 03, 17), db.Categories.Single(c => c.Id == 1).Guid);
 
                 // Act
                 unitToTest.Create(newProduct);
@@ -40,8 +42,9 @@ namespace Spg.KaufMyStuff.Application.Test
                 DatabaseUtilities.InitializeDatabase(db);
                 IRepositoryBase<Product> productRepo = new RepositoryBase<Product>(db);
                 IReadOnlyRepositoryBase<Product> readOnlyRroductRepo = new RepositoryBase<Product>(db);
-                ProductService unitToTest = new ProductService(productRepo, readOnlyRroductRepo, new DateTimeServiceMock());
-                Product newProduct = new Product("Test Product 02", 20, "1234567890123", "Testmaterial", new DateTime(2023, 03, 17), new Category("", new Guid(), null!));
+                IReadOnlyRepositoryBase<Category> readOnlyCategoryRepo = new RepositoryBase<Category>(db);
+                ProductService unitToTest = new ProductService(productRepo, readOnlyRroductRepo, readOnlyCategoryRepo, new DateTimeServiceMock());
+                CreateProductDto newProduct = new CreateProductDto("Test Product 02", 20, "1234567890123", "Testmaterial", new DateTime(2023, 03, 17), new Category("", new Guid(), null!).Guid);
 
                 // Act + Assert
                 Assert.Throws<ProductServiceCreateException>(() => unitToTest.Create(newProduct));
@@ -57,8 +60,9 @@ namespace Spg.KaufMyStuff.Application.Test
                 DatabaseUtilities.InitializeDatabase(db);
                 IRepositoryBase<Product> productRepo = new RepositoryBase<Product>(db);
                 IReadOnlyRepositoryBase<Product> readOnlyRroductRepo = new RepositoryBase<Product>(db);
-                ProductService unitToTest = new ProductService(productRepo, readOnlyRroductRepo, new DateTimeServiceMock());
-                Product newProduct = new Product("Test Product 01", 20, "1234567890123", "Testmaterial", new DateTime(2023, 03, 17), db.Categories.Single(c => c.Id == 1));
+                IReadOnlyRepositoryBase<Category> readOnlyCategoryRepo = new RepositoryBase<Category>(db);
+                ProductService unitToTest = new ProductService(productRepo, readOnlyRroductRepo, readOnlyCategoryRepo, new DateTimeServiceMock());
+                CreateProductDto newProduct = new CreateProductDto("Test Product 01", 20, "1234567890123", "Testmaterial", new DateTime(2023, 03, 17), db.Categories.Single(c => c.Id == 1).Guid);
 
                 // Act + Assert
                 Assert.Throws<ProductServiceValidationException>(() => unitToTest.Create(newProduct));
@@ -74,14 +78,15 @@ namespace Spg.KaufMyStuff.Application.Test
                 DatabaseUtilities.InitializeDatabase(db);
                 IRepositoryBase<Product> productRepo = new RepositoryBase<Product>(db);
                 IReadOnlyRepositoryBase<Product> readOnlyRroductRepo = new RepositoryBase<Product>(db);
-                ProductService unitToTest = new ProductService(productRepo, readOnlyRroductRepo, new DateTimeServiceMock());
-                Product newProduct = new Product(
+                IReadOnlyRepositoryBase<Category> readOnlyCategoryRepo = new RepositoryBase<Category>(db);
+                ProductService unitToTest = new ProductService(productRepo, readOnlyRroductRepo, readOnlyCategoryRepo, new DateTimeServiceMock());
+                CreateProductDto newProduct = new CreateProductDto(
                     "Test Product 02", 
                     20, 
                     "1234567890123", 
                     "Testmaterial", 
                     new DateTime(2023, 03, 03), 
-                    db.Categories.Single(c => c.Id == 1)
+                    db.Categories.Single(c => c.Id == 1).Guid
                 );
 
                 // Act + Assert

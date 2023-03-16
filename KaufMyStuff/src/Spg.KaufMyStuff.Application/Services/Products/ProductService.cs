@@ -1,4 +1,6 @@
-﻿using Spg.KaufMyStuff.DomainModel.Exceptions;
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Spg.KaufMyStuff.DomainModel.Dtos;
+using Spg.KaufMyStuff.DomainModel.Exceptions;
 using Spg.KaufMyStuff.DomainModel.Interfaces;
 using Spg.KaufMyStuff.DomainModel.Models;
 using Spg.KaufMyStuff.Repositories;
@@ -14,16 +16,19 @@ namespace Spg.KaufMyStuff.Application.Services.Products
     public class ProductService
     {
         private readonly IRepositoryBase<Product> _productRepository;
-        private readonly IReadOnlyRepositoryBase<Product> _readOnlyRroductRepository;
+        private readonly IReadOnlyRepositoryBase<Product> _readOnlyProductRepository;
+        private readonly IReadOnlyRepositoryBase<Category> _readOnlyCategoryRepository;
         private readonly IDateTimeService _dateTimeService;
 
         public ProductService(
             IRepositoryBase<Product> productRepository,
-            IReadOnlyRepositoryBase<Product> readOnlyRroductRepository,
+            IReadOnlyRepositoryBase<Product> readOnlyProductRepository,
+            IReadOnlyRepositoryBase<Category> readOnlyCategoryRepository,
             IDateTimeService dateTimeService)
         {
             _productRepository = productRepository;
-            _readOnlyRroductRepository = readOnlyRroductRepository;
+            _readOnlyProductRepository = readOnlyProductRepository;
+            _readOnlyCategoryRepository = readOnlyCategoryRepository;
             _dateTimeService = dateTimeService;
         }
 
@@ -46,28 +51,43 @@ namespace Spg.KaufMyStuff.Application.Services.Products
         /// --- * Darf nur in einer Kategorie vorkommen
         /// * Das Ablaufdatum darf nicht an einem Samstag/Sonntag sein
         /// </remarks>
-        public void Create(Product newProduct)
+        public void Create(CreateProductDto newProductDto)
         {
-            // TODO: Das Ablaufdatum muss 4 Wochen in der Zukunft liegen
-            if (newProduct.ExpiryDate < _dateTimeService.Now.AddDays(14))
+            // Initialization
+            //TODO: Katg. finden in DB
+            Category existingCategory = null; // _readOnlyCategoryRepository.Find(newProductDto.CategoryId);
+
+            // Validation
+            if (newProductDto.ExpiryDate < _dateTimeService.Now.AddDays(14))
             {
                 throw new ProductServiceValidationException("Das Ablaufdatum muss 2 Wochen in der Zukunft liegen!");
             }
-            if (_readOnlyRroductRepository.GetByPK(newProduct.Name) is not null)
+            if (_readOnlyProductRepository.GetByPK(newProductDto.Name) is not null)
             {
                 throw new ProductServiceValidationException("Das Produkt existiert bereits!");
             }
-
             // ...
 
+            // Act
+            Product p = new(
+                newProductDto.Name, 
+                newProductDto.Tax, 
+                newProductDto.Ean, 
+                newProductDto.Material, 
+                newProductDto.ExpiryDate, 
+                existingCategory);
+
+            // [Save]
             try
             {
-                _productRepository.Create(newProduct);
+                _productRepository.Create(p);
             }
             catch (RepositoryCreateException ex)
             {
                 throw new ProductServiceCreateException("Create ist sehr schief gegangen!", ex);
             }
+
+            // [Mapp]
         }
 
         public IQueryable<Product> GetAll()

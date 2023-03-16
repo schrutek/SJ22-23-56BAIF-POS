@@ -42,6 +42,8 @@ namespace Spg.KaufMyStuff.Repositories
             return _db.Set<TEntity>().Find(pk);
         }
 
+        // GetByGuid()
+
         public IQueryable<TEntity> GetAll()
         {
             return null;

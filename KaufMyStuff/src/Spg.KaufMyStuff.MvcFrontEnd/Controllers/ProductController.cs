@@ -13,6 +13,11 @@ namespace Spg.KaufMyStuff.MvcFrontEnd.Controllers
 
         public IActionResult Create()
         {
+            if (!ModelState.IsValid)
+            {
+                // Redirect (Error-Page)
+            }
+
             List<SelectListItem> Names = new()
             {
                 new SelectListItem("N01", "Name 1"),

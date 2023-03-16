@@ -1,6 +1,7 @@
 using Moq;
 using Spg.KaufMyStuff.Application.Services.Products;
 using Spg.KaufMyStuff.Application.Test.Helpers;
+using Spg.KaufMyStuff.DomainModel.Dtos;
 using Spg.KaufMyStuff.DomainModel.Exceptions;
 using Spg.KaufMyStuff.DomainModel.Interfaces;
 using Spg.KaufMyStuff.DomainModel.Models;
@@ -14,6 +15,7 @@ namespace Spg.KaufMyStuff.Application.Test
         private readonly Mock<IDateTimeService> _dateTimeServiceMock = new Mock<IDateTimeService>();
         private readonly Mock<IRepositoryBase<Product>> _productRepositoryMock = new Mock<IRepositoryBase<Product>>();
         private readonly Mock<IReadOnlyRepositoryBase<Product>> _productReadOnlyRepositoryMock = new Mock<IReadOnlyRepositoryBase<Product>>();
+        private readonly Mock<IReadOnlyRepositoryBase<Category>> _productReadOnlyCategoryMock = new Mock<IReadOnlyRepositoryBase<Category>>();
         private readonly ProductService _unitToTest;
 
         public ProductServiceTestMock()
@@ -21,6 +23,7 @@ namespace Spg.KaufMyStuff.Application.Test
             _unitToTest = new ProductService(
                 _productRepositoryMock.Object,
                 _productReadOnlyRepositoryMock.Object,
+                _productReadOnlyCategoryMock.Object,
                 _dateTimeServiceMock.Object);
         }
 
@@ -38,13 +41,13 @@ namespace Spg.KaufMyStuff.Application.Test
                 MockUtilities.GetSeedingCategory(MockUtilities.GetSeedingShop()))
             );
 
-            Product newProduct = new Product(
+            CreateProductDto newProduct = new CreateProductDto(
                 "Test Product 02", 
                 20, 
                 "1234567890123", 
                 "Testmaterial", 
                 new DateTime(2023, 03, 17),
-                MockUtilities.GetSeedingCategory(MockUtilities.GetSeedingShop()));
+                MockUtilities.GetSeedingCategory(MockUtilities.GetSeedingShop()).Guid);
 
             // Act
             _unitToTest.Create(newProduct);
