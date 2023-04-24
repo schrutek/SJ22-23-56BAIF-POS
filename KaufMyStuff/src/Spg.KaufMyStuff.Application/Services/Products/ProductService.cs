@@ -13,12 +13,14 @@ using System.Threading.Tasks;
 
 namespace Spg.KaufMyStuff.Application.Services.Products
 {
-    public class ProductService
+    public class ProductService : IReadOnlyProductService
     {
         private readonly IRepositoryBase<Product> _productRepository;
         private readonly IReadOnlyRepositoryBase<Product> _readOnlyProductRepository;
         private readonly IReadOnlyRepositoryBase<Category> _readOnlyCategoryRepository;
         private readonly IDateTimeService _dateTimeService;
+
+        public IQueryable<Product> Products { get; set; }
 
         public ProductService(
             IRepositoryBase<Product> productRepository,
@@ -30,6 +32,25 @@ namespace Spg.KaufMyStuff.Application.Services.Products
             _readOnlyProductRepository = readOnlyProductRepository;
             _readOnlyCategoryRepository = readOnlyCategoryRepository;
             _dateTimeService = dateTimeService;
+        }
+
+        public IReadOnlyProductService Load()
+        {
+            Products = _readOnlyProductRepository.GetAll();
+            return this;
+        }
+
+        public IEnumerable<Product> GetData() // Product ändern auf ProductDto
+        {
+            // DTO-Mapping (AutoMapper, LinQ-Select, foreach(...))
+            //return Products.Select(p => new ProductDto() { ProductName = p.Name, ... });
+            return Products;
+        }
+
+        public IEnumerable<Product> GetDataPaged(int pageIndex, int pageSize) // Product ändern auf ProductDto
+        {
+            // PagenatedList verwenden...
+            return Products;
         }
 
         // TODO: Fertig machen!!!!!!
@@ -55,7 +76,8 @@ namespace Spg.KaufMyStuff.Application.Services.Products
         {
             // Initialization
             //TODO: Katg. finden in DB
-            Category existingCategory = null; // _readOnlyCategoryRepository.Find(newProductDto.CategoryId);
+            Category existingCategory = _readOnlyCategoryRepository.GetByGuid<Category>(newProductDto.CategoryId) 
+                ?? throw new ProductServiceValidationException("Die Kategorie wurde nicht gefunden!");
 
             // Validation
             if (newProductDto.ExpiryDate < _dateTimeService.Now.AddDays(14))
@@ -68,7 +90,7 @@ namespace Spg.KaufMyStuff.Application.Services.Products
             }
             // ...
 
-            // Act
+            // Act / Mapping
             Product p = new(
                 newProductDto.Name, 
                 newProductDto.Tax, 
@@ -88,11 +110,6 @@ namespace Spg.KaufMyStuff.Application.Services.Products
             }
 
             // [Mapp]
-        }
-
-        public IQueryable<Product> GetAll()
-        {
-            return null;
         }
     }
 }

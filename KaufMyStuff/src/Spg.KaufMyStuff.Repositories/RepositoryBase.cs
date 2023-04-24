@@ -26,7 +26,7 @@ namespace Spg.KaufMyStuff.Repositories
         public void Create(TEntity newEntity)
         {
             DbSet<TEntity> set = _db.Set<TEntity>();
-            set.Add(newEntity);
+            set.Add(newEntity); // INSERT INTO
             try
             {
                 _db.SaveChanges();
@@ -37,12 +37,34 @@ namespace Spg.KaufMyStuff.Repositories
             }
         }
 
+        public int Update(TEntity newEntity)
+        {
+            DbSet<TEntity> set = _db.Set<TEntity>();
+            set.Update(newEntity);  // UPDATE ... WHERE Name='asdad'
+            try
+            {
+                return _db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                throw new RepositoryCreateException("Update ist fehlgeschlagen!", ex);
+            }
+        }
+
         public TEntity? GetByPK<TKey>(TKey pk)
         {
             return _db.Set<TEntity>().Find(pk);
         }
 
-        // GetByGuid()
+        public T? GetByGuid<T>(Guid guid) where T : class, IFindableByGuid
+        {
+            return _db.Set<T>().SingleOrDefault(e => e.Guid == guid);
+        }
+
+        public T? GetByEMail<T>(string eMail) where T : class, IFindableByEMail
+        {
+            return _db.Set<T>().SingleOrDefault(e => e.EMail == eMail);
+        }
 
         public IQueryable<TEntity> GetAll()
         {

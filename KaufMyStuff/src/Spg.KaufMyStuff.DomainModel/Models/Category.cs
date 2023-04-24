@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Spg.KaufMyStuff.DomainModel.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Spg.KaufMyStuff.DomainModel.Models
 {
-    public class Category : EntityBase
+    public class Category : EntityBase, IFindableByGuid
     {
         protected Category() { }
         public Category(string name, Guid guid, Shop shop)
@@ -16,7 +17,7 @@ namespace Spg.KaufMyStuff.DomainModel.Models
             ShopNavigation = shop;
         }
 
-        public Guid Guid { get; set; }
+        public Guid Guid { get; }
         public string Name { get; set; }
 
 

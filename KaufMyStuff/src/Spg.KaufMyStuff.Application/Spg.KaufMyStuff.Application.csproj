@@ -7,9 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Spg.KaufMyStuff.DomainModel\Spg.KaufMyStuff.DomainModel.csproj" />
     <ProjectReference Include="..\Spg.KaufMyStuff.Infrastructure\Spg.KaufMyStuff.Infrastructure.csproj" />
     <ProjectReference Include="..\Spg.KaufMyStuff.Repositories\Spg.KaufMyStuff.Repositories.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Cqrs\Product\Commands\" />
   </ItemGroup>
 
 </Project>

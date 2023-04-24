@@ -10,5 +10,8 @@ namespace Spg.KaufMyStuff.DomainModel.Interfaces
     {
         TEntity? GetByPK<TKey>(TKey pk);
         IQueryable<TEntity> GetAll();
+
+        T? GetByGuid<T>(Guid guid) where T : class, IFindableByGuid;
+        T? GetByEMail<T>(string eMail) where T : class, IFindableByEMail;
     }
 }

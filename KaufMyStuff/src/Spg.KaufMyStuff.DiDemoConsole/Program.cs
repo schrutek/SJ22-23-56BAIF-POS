@@ -13,9 +13,9 @@ db.Database.EnsureDeleted();
 db.Database.EnsureCreated();
 db.Seed();
 
-IQueryable<Product> result = new ProductService(new RepositoryBase<Product>(db), new RepositoryBase<Product>(db), new RepositoryBase<Category>(db), new DateTimeService()).GetAll();
+//IQueryable<Product> result = new ProductService(new RepositoryBase<Product>(db), new RepositoryBase<Product>(db), new RepositoryBase<Category>(db), new DateTimeService()).GetAll();
 
-foreach (Product p in result.ToList())
-{
-    Console.WriteLine($"{p.Name} {p.Ean} {p.Material}");
-}
+//foreach (Product p in result.ToList())
+//{
+//    Console.WriteLine($"{p.Name} {p.Ean} {p.Material}");
+//}

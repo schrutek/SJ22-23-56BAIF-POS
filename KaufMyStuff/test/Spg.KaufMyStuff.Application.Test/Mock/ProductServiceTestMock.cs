@@ -15,7 +15,7 @@ namespace Spg.KaufMyStuff.Application.Test
         private readonly Mock<IDateTimeService> _dateTimeServiceMock = new Mock<IDateTimeService>();
         private readonly Mock<IRepositoryBase<Product>> _productRepositoryMock = new Mock<IRepositoryBase<Product>>();
         private readonly Mock<IReadOnlyRepositoryBase<Product>> _productReadOnlyRepositoryMock = new Mock<IReadOnlyRepositoryBase<Product>>();
-        private readonly Mock<IReadOnlyRepositoryBase<Category>> _productReadOnlyCategoryMock = new Mock<IReadOnlyRepositoryBase<Category>>();
+        private readonly Mock<IReadOnlyRepositoryBase<Category>> _categoryReadOnlyRepositoryMock = new Mock<IReadOnlyRepositoryBase<Category>>();
         private readonly ProductService _unitToTest;
 
         public ProductServiceTestMock()
@@ -23,7 +23,7 @@ namespace Spg.KaufMyStuff.Application.Test
             _unitToTest = new ProductService(
                 _productRepositoryMock.Object,
                 _productReadOnlyRepositoryMock.Object,
-                _productReadOnlyCategoryMock.Object,
+                _categoryReadOnlyRepositoryMock.Object,
                 _dateTimeServiceMock.Object);
         }
 
@@ -32,7 +32,9 @@ namespace Spg.KaufMyStuff.Application.Test
         {
             // Arrange
             _dateTimeServiceMock.Setup(d => d.Now).Returns(new DateTime(2023, 02, 25));
-            _productReadOnlyRepositoryMock.Setup(r => r.GetByPK("Test Product 01")).Returns(new Product(
+            _productReadOnlyRepositoryMock
+                .Setup(r => r.GetByPK("Test Product 01"))
+                .Returns(new Product(
                 "Test Product 01",
                 20,
                 "1234567890123",
@@ -40,6 +42,9 @@ namespace Spg.KaufMyStuff.Application.Test
                 new DateTime(2023, 03, 17),
                 MockUtilities.GetSeedingCategory(MockUtilities.GetSeedingShop()))
             );
+            _categoryReadOnlyRepositoryMock
+                .Setup(r => r.GetByGuid<Category>(new Guid("d2616f6e-7424-4b9f-bf81-6aad88183f41")))
+                .Returns(MockUtilities.GetSeedingCategory(MockUtilities.GetSeedingShop()));
 
             CreateProductDto newProduct = new CreateProductDto(
                 "Test Product 02", 
@@ -54,6 +59,70 @@ namespace Spg.KaufMyStuff.Application.Test
 
             // Assert
             _productRepositoryMock.Verify(r => r.Create(It.IsAny<Product>()), Times.Once);
+        }
+
+        [Fact]
+        public void Create_CategoryDoesNotExist()
+        {
+            // Arrange
+            _dateTimeServiceMock.Setup(d => d.Now).Returns(new DateTime(2023, 02, 25));
+            _productReadOnlyRepositoryMock
+                .Setup(r => r.GetByPK("Test Product 01"))
+                .Returns(new Product(
+                "Test Product 01",
+                20,
+                "1234567890123",
+                "Testmaterial",
+                new DateTime(2023, 03, 17),
+                MockUtilities.GetSeedingCategory(MockUtilities.GetSeedingShop()))
+            );
+            _categoryReadOnlyRepositoryMock
+                .Setup(r => r.GetByGuid<Category>(new Guid("f99a7349-e987-4cb9-a986-4c200c71bb13")))
+                .Returns<Category>(null!);
+
+            CreateProductDto newProduct = new CreateProductDto(
+                "Test Product 02",
+                20,
+                "1234567890123",
+                "Testmaterial",
+                new DateTime(2023, 03, 17),
+                MockUtilities.GetSeedingCategory(MockUtilities.GetSeedingShop()).Guid);
+
+            // Act + Assert
+            _productRepositoryMock.Verify(r => r.Create(It.IsAny<Product>()), Times.Never);
+            Assert.Throws<ProductServiceValidationException>(() => _unitToTest.Create(newProduct));
+        }
+
+        [Fact]
+        public void Create_CategoryNotUniqueExist()
+        {
+            // Arrange
+            _dateTimeServiceMock.Setup(d => d.Now).Returns(new DateTime(2023, 02, 25));
+            _productReadOnlyRepositoryMock
+                .Setup(r => r.GetByPK("Test Product 01"))
+                .Returns(new Product(
+                "Test Product 01",
+                20,
+                "1234567890123",
+                "Testmaterial",
+                new DateTime(2023, 03, 17),
+                MockUtilities.GetSeedingCategory(MockUtilities.GetSeedingShop()))
+            );
+            _categoryReadOnlyRepositoryMock
+                .Setup(r => r.GetByGuid<Category>(new Guid("f99a7349-e987-4cb9-a986-4c200c71bb13")))
+                .Throws(() => new InvalidOperationException("Kategorie wurde mehrmals gefunden!"));
+
+            CreateProductDto newProduct = new CreateProductDto(
+                "Test Product 02",
+                20,
+                "1234567890123",
+                "Testmaterial",
+                new DateTime(2023, 03, 17),
+                MockUtilities.GetSeedingCategory(MockUtilities.GetSeedingShop()).Guid);
+
+            // Act + Assert
+            _productRepositoryMock.Verify(r => r.Create(It.IsAny<Product>()), Times.Never);
+            Assert.Throws<ProductServiceValidationException>(() => _unitToTest.Create(newProduct));
         }
     }
 }
