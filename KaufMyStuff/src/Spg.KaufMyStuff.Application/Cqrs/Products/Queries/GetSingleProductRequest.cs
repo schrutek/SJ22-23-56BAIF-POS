@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Spg.KaufMyStuff.DomainModel.Models;
+using Spg.KaufMyStuff.DomainModel.Dtos;
 
-namespace Spg.KaufMyStuff.Application.Cqrs.Product.Queries
+namespace Spg.KaufMyStuff.Application.Cqrs.Products.Queries
 {
     public class GetSingleProductRequest : IRequest<ProductDto>
     {

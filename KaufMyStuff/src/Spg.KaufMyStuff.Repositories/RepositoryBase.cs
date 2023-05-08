@@ -68,7 +68,7 @@ namespace Spg.KaufMyStuff.Repositories
 
         public IQueryable<TEntity> GetAll()
         {
-            return null;
+            return _db.Set<TEntity>();
         }
     }
 }

@@ -1,9 +1,39 @@
+using Microsoft.EntityFrameworkCore;
+using Spg.KaufMyStuff.Application.Services;
+using Spg.KaufMyStuff.Application.Services.Products;
+using Spg.KaufMyStuff.DomainModel.Interfaces;
+using Spg.KaufMyStuff.DomainModel.Models;
+using Spg.KaufMyStuff.Infrastructure;
+using Spg.KaufMyStuff.Repositories;
+using System.Reflection;
+using Spg.KaufMyStuff.Application;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddEd("Data Source=KaufMyStuff.db");
+builder.Services.AddKmSRepositories();
+builder.Services.AddKmSServices();
+
 var app = builder.Build();
+
+
+
+
+// ACHTUNG!!! Wegwerf-Code:
+DbContextOptionsBuilder options = new DbContextOptionsBuilder();
+options.UseSqlite("Data Source=KaufMyStuff.db");
+KaufMyStuffContext db = new KaufMyStuffContext(options.Options);
+db.Database.EnsureDeleted();
+db.Database.EnsureCreated();
+db.Seed();
+// ACHTUNG!!! Wegwerf-Code:
+
+
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -17,9 +47,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
-app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

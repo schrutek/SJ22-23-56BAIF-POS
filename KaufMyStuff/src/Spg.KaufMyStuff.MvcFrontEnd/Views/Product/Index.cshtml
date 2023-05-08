@@ -1,0 +1,30 @@
+﻿@using Spg.KaufMyStuff.DomainModel.Models;
+
+@model IEnumerable<Product>
+
+<h1>Liste aller Produkte :)</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>EAN</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Product product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Ean</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button asp-controller="Home" asp-action="Index" class="btn btn-secondary">Home</button>
+
+@section Scripts
+{
+
+}

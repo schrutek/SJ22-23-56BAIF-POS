@@ -1,8 +1,10 @@
-﻿using Spg.KaufMyStuff.DomainModel.Interfaces;
+﻿using Microsoft.EntityFrameworkCore.Update;
+using Spg.KaufMyStuff.DomainModel.Interfaces;
 using Spg.KaufMyStuff.DomainModel.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +14,10 @@ namespace Spg.KaufMyStuff.Application.Services.Products
     {
         public static IReadOnlyProductService FilterNameContains(this IReadOnlyProductService service, string namePart)
         {
-            service.Products = service.Products.Where(p => p.Name.ToLower().Contains(namePart.ToLower()));
+            if (!string.IsNullOrEmpty(namePart))
+            {
+                service.Products = service.Products.Where(p => p.Name.ToLower().Contains(namePart.ToLower()));
+            }
             return service;
         }
 
