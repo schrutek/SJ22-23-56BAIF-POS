@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spg.KaufMyStuff.Application.Services
+namespace Spg.KaufMyStuff.DomainModel.Services
 {
     public class DateTimeService : IDateTimeService
     {

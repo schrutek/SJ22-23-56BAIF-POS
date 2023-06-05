@@ -1,11 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Spg.KaufMyStuff.Application.Cqrs.Products.Queries;
-using Spg.KaufMyStuff.Application.Services.Products;
+using Spg.KaufMyStuff.DomainModel.Cqrs.Products.Queries;
+using Spg.KaufMyStuff.DomainModel.Services.Products;
 using Spg.KaufMyStuff.DomainModel.Dtos;
 using Spg.KaufMyStuff.DomainModel.Interfaces;
 using Spg.KaufMyStuff.DomainModel.Models;
+using Spg.KaufMyStuff.DomainModel.Filters;
 
 namespace Spg.KaufMyStuff.MvcFrontEnd.Controllers
 {
@@ -22,9 +23,10 @@ namespace Spg.KaufMyStuff.MvcFrontEnd.Controllers
         }
 
         // https://localhost:1234/Product/Index
+        //[AuthorisationFilter(RoleName = "admin")]
         public IActionResult Index()
         {
-            IEnumerable<Product> result = _readOnlyProductService
+            IEnumerable<ProductDto> result = _readOnlyProductService
                 .Load()
                 .FilterNameContains("awesome")
                 //.FilterNameContains("ch")

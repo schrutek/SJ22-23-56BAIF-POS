@@ -1,6 +1,6 @@
-﻿@using Spg.KaufMyStuff.DomainModel.Models;
+﻿@using Spg.KaufMyStuff.DomainModel.Dtos;
 
-@model IEnumerable<Product>
+@model IEnumerable<ProductDto>
 
 <h1>Liste aller Produkte :)</h1>
 
@@ -9,14 +9,27 @@
         <tr>
             <th>Name</th>
             <th>EAN</th>
+            <th>Ablaufdatum</th>
+            <th>Anz. Warenk.</th>
+            <th>ID's</th>
         </tr>
     </thead>
     <tbody>
-        @foreach(Product product in Model)
+        @foreach(ProductDto product in Model)
         {
-            <tr>
-                <td>@product.Name</td>
-                <td>@product.Ean</td>
+            string ids = string.Join(", ", product.ShoppingCartItems.Select(p => p.Id.ToString()));
+            string color = "";
+            if (product.ShoppingCartItems.Count == 0)
+            {
+                color = "red";
+            }
+
+            <tr style="background-color: @color">
+                <td>@product.ProductName</td>
+                <td>@product.Ean13</td>
+                <td>@product.ExpiryDate.Value.ToString("dd/MM/yyyy hh:mm:ss")</td>
+                <td>@product.ShoppingCartItemsCount</td>
+                <td>@ids</td>
             </tr>
         }
     </tbody>

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spg.KaufMyStuff.Application.Test.Helpers
+namespace Spg.KaufMyStuff.DomainModel.Test.Helpers
 {
     public static  class MockUtilities
     {

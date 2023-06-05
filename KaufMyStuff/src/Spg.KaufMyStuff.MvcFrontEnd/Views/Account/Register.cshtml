@@ -1,0 +1,60 @@
+﻿@using Spg.KaufMyStuff.DomainModel.Dtos;
+
+@model RegisterDto
+
+@{
+    //string msg = "";
+    //foreach (var modelState in ViewData.ModelState.Values)
+    //{
+    //    foreach (var error in modelState.Errors)
+    //    {
+    //        if (error.ErrorMessage.Contains("mail"))
+    //        {
+    //            msg = error.ErrorMessage;
+    //        }
+    //    }
+    //}
+
+    string? msg =   (ViewData.ModelState.Values
+                        .SingleOrDefault(e => e.Errors
+                            .SingleOrDefault(e => e.ErrorMessage.ToLower().Contains("mail")) != default)
+                    )?
+                    .Errors
+                    .FirstOrDefault()?
+                    .ErrorMessage ?? string.Empty;
+}
+
+<h3>Willkommen zur registrierung!</h3>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+
+    <div class="">
+        <label asp-for="@Model.Gender">Geschlecht:</label>
+        <input asp-for="@Model.Gender" />
+        <span asp-validation-for="@Model.Gender"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.FirstName">Vorname:</label>
+        <input asp-for="@Model.FirstName" />
+        <span asp-validation-for="@Model.FirstName"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.LastName">Nachname:</label>
+        <input asp-for="@Model.LastName" />
+        <span asp-validation-for="@Model.LastName"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.EMail">E-Mail-Adresse:</label>
+        <input asp-for="@Model.EMail" />
+        <span asp-validation-for="@Model.EMail"></span>
+        <span>@msg</span>
+    </div>
+    <div>
+        <label asp-for="@Model.BirthDate">Geburtsdatum</label>
+        <input type="date" asp-for="@Model.BirthDate" />
+        <span asp-validation-for="@Model.BirthDate"></span>
+    </div>
+    <hr />
+    <button type="submit">Senden</button>
+</form>

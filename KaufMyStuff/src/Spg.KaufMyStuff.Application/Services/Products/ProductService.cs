@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Spg.KaufMyStuff.DomainModel.Dtos;
 using Spg.KaufMyStuff.DomainModel.Exceptions;
 using Spg.KaufMyStuff.DomainModel.Interfaces;
@@ -11,7 +12,7 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spg.KaufMyStuff.Application.Services.Products
+namespace Spg.KaufMyStuff.DomainModel.Services.Products
 {
     public class ProductService : IReadOnlyProductService
     {
@@ -36,15 +37,32 @@ namespace Spg.KaufMyStuff.Application.Services.Products
 
         public IReadOnlyProductService Load()
         {
-            Products = _readOnlyProductRepository.GetAll();
+            Products = _readOnlyProductRepository
+                .GetAll(take: 5, includeNavigationProperty: "CategoryNavigation;ShoppingCartItems", skip: 10);
             return this;
         }
 
-        public IEnumerable<Product> GetData() // Product ändern auf ProductDto
+        public IEnumerable<ProductDto> GetData() // Product ändern auf ProductDto
         {
             // DTO-Mapping (AutoMapper, LinQ-Select, foreach(...))
-            //return Products.Select(p => new ProductDto() { ProductName = p.Name, ... });
-            return Products;
+
+            IEnumerable<ProductDto> data = Products.Select(p => new ProductDto()
+            {
+                ProductName = p.Name,
+                Ean13 = p.Ean,
+                ExpiryDate = p.ExpiryDate,
+                CategoryName = p.CategoryNavigation.Name,
+                Material = p.Material,
+                ShoppingCartItems = p.ShoppingCartItems
+                    .Select(i => new ShoppingCartItemDto()
+                    {
+                        Id = i.Id,
+                        IsShippable = !string.IsNullOrEmpty(((ShippableShoppingCartItem)i).Address.StreetName)
+                    })
+                    .ToList()
+            });
+
+            return data;
         }
 
         public IEnumerable<Product> GetDataPaged(int pageIndex, int pageSize) // Product ändern auf ProductDto
@@ -98,6 +116,11 @@ namespace Spg.KaufMyStuff.Application.Services.Products
                 newProductDto.Material, 
                 newProductDto.ExpiryDate, 
                 existingCategory);
+
+            // Angenommen, hier wäre ein Customer hinzufügen...
+            //string customerNumber = ""; // Ist hier zu errechnen
+            //Customer newCustomer = new Customer(Guid.NewGuid(), Enumerations.Genders.Other, customerNumber, null, null, null, null, DateTime.Now, null);
+
 
             // [Save]
             try

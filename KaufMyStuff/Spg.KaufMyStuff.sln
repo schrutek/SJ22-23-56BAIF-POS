@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.RazorPages"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.Repository.Test", "test\Spg.KaufMyStuff.Repository.Test\Spg.KaufMyStuff.Repository.Test.csproj", "{54792CCD-9255-4546-9F9D-4AD2D8F70E4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spg.KaufMyStuff.Application.Test", "test\Spg.KaufMyStuff.Application.Test\Spg.KaufMyStuff.Application.Test.csproj", "{698595BE-217C-4431-A0A0-9E35115DF9EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.Application.Test", "test\Spg.KaufMyStuff.Application.Test\Spg.KaufMyStuff.Application.Test.csproj", "{698595BE-217C-4431-A0A0-9E35115DF9EF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spg.KaufMyStuff.WpfFrontEnd", "src\Spg.KaufMyStuff.WpfFrontEnd\Spg.KaufMyStuff.WpfFrontEnd.csproj", "{D477B4AF-D95E-4C9C-A244-0CFD7A0272FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{698595BE-217C-4431-A0A0-9E35115DF9EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{698595BE-217C-4431-A0A0-9E35115DF9EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{698595BE-217C-4431-A0A0-9E35115DF9EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D477B4AF-D95E-4C9C-A244-0CFD7A0272FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D477B4AF-D95E-4C9C-A244-0CFD7A0272FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D477B4AF-D95E-4C9C-A244-0CFD7A0272FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D477B4AF-D95E-4C9C-A244-0CFD7A0272FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

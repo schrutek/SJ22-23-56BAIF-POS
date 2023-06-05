@@ -1,6 +1,6 @@
 using Moq;
-using Spg.KaufMyStuff.Application.Services.Products;
-using Spg.KaufMyStuff.Application.Test.Helpers;
+using Spg.KaufMyStuff.DomainModel.Services.Products;
+using Spg.KaufMyStuff.DomainModel.Test.Helpers;
 using Spg.KaufMyStuff.DomainModel.Dtos;
 using Spg.KaufMyStuff.DomainModel.Exceptions;
 using Spg.KaufMyStuff.DomainModel.Interfaces;
@@ -8,7 +8,7 @@ using Spg.KaufMyStuff.DomainModel.Models;
 using Spg.KaufMyStuff.Infrastructure;
 using Spg.KaufMyStuff.Repositories;
 
-namespace Spg.KaufMyStuff.Application.Test
+namespace Spg.KaufMyStuff.DomainModel.Test
 {
     public class ProductServiceTestMock
     {

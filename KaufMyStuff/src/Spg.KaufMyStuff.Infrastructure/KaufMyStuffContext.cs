@@ -55,6 +55,9 @@ namespace Spg.KaufMyStuff.Infrastructure
 
             modelBuilder.Entity<Customer>().OwnsOne(c => c.Address);
             modelBuilder.Entity<Shop>().OwnsOne(s => s.Address);
+            modelBuilder.Entity<ShippableShoppingCartItem>().OwnsOne(s => s.Address);
+
+            modelBuilder.Entity<ShoppingCartItem>().HasDiscriminator(s => s.ItemType);
 
             //modelBuilder.Entity<Customer>().HasMany(c => c.ShoppingCarts);
         }
@@ -213,14 +216,28 @@ namespace Spg.KaufMyStuff.Infrastructure
             SaveChanges();
 
 
+            List<ShippableShoppingCartItem> shippableShoppingCartItem = new Faker<ShippableShoppingCartItem>("de").CustomInstantiator(f =>
+                new ShippableShoppingCartItem(f.Random.ListItem(shoppingCarts), f.Random.ListItem(products), new Address("x", "x", "x", "x"))
+            )
+            .Rules((f, i) =>
+            {
+                i.LastChangeDate = f.Date.Between(new DateTime(2020, 01, 01), DateTime.Now).Date.OrNull(f, 0.3f);
+                i.ItemType = nameof(ShippableShoppingCartItem);
+            })
+            .Generate(400)
+            .ToList();
+            ShoppingCartItems.AddRange(shippableShoppingCartItem);
+            SaveChanges();
+
             List<ShoppingCartItem> shoppingCartItems = new Faker<ShoppingCartItem>("de").CustomInstantiator(f =>
                 new ShoppingCartItem(f.Random.ListItem(shoppingCarts), f.Random.ListItem(products))
             )
             .Rules((f, i) =>
             {
                 i.LastChangeDate = f.Date.Between(new DateTime(2020, 01, 01), DateTime.Now).Date.OrNull(f, 0.3f);
+                i.ItemType = nameof(ShoppingCartItem);
             })
-            .Generate(800)
+            .Generate(400)
             .ToList();
             ShoppingCartItems.AddRange(shoppingCartItems);
             SaveChanges();

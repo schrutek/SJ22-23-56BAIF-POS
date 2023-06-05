@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Spg.KaufMyStuff.Application.Services;
-using Spg.KaufMyStuff.Application.Services.Products;
+using Spg.KaufMyStuff.DomainModel.Services;
+using Spg.KaufMyStuff.DomainModel.Services.Products;
 using Spg.KaufMyStuff.DiDemoConsole;
 using Spg.KaufMyStuff.DomainModel.Models;
 using Spg.KaufMyStuff.Infrastructure;

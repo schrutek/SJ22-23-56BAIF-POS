@@ -1,12 +1,13 @@
 using Microsoft.EntityFrameworkCore;
-using Spg.KaufMyStuff.Application.Services;
-using Spg.KaufMyStuff.Application.Services.Products;
+using Spg.KaufMyStuff.DomainModel.Services;
+using Spg.KaufMyStuff.DomainModel.Services.Products;
 using Spg.KaufMyStuff.DomainModel.Interfaces;
 using Spg.KaufMyStuff.DomainModel.Models;
 using Spg.KaufMyStuff.Infrastructure;
 using Spg.KaufMyStuff.Repositories;
 using System.Reflection;
-using Spg.KaufMyStuff.Application;
+using Spg.KaufMyStuff.DomainModel;
+using Spg.KaufMyStuff.MvcFrontEnd.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddEd("Data Source=KaufMyStuff.db");
 builder.Services.AddKmSRepositories();
 builder.Services.AddKmSServices();
+
+builder.Services.AddTransient<HttpAuthService>();
+builder.Services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
 

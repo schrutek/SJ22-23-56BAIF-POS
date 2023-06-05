@@ -12,7 +12,7 @@
     public partial class Product
     {
         // Alle properties
-        public string Name { get; private set; } = string.Empty;
+        public string Name { get; private set; } = string.Empty; // PK!!!
         public int Tax { get; set; }
         public string Ean { get; set; } = string.Empty;
         public string? Material { get; set; } = string.Empty;

@@ -13,5 +13,8 @@ namespace Spg.KaufMyStuff.DomainModel.Dtos
         public string? Material { get; set; } = string.Empty;
         public DateTime? ExpiryDate { get; set; }
         public string? CategoryName { get; set; } = string.Empty;
+
+        public List<ShoppingCartItemDto> ShoppingCartItems { get; set; } = new();
+        public int ShoppingCartItemsCount => ShoppingCartItems.Count;
     }
 }

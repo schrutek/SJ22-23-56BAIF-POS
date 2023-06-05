@@ -4,7 +4,7 @@ using Spg.KaufMyStuff.DomainModel.Exceptions;
 using Spg.KaufMyStuff.DomainModel.Interfaces;
 using Spg.KaufMyStuff.DomainModel.Models;
 
-namespace Spg.KaufMyStuff.Application.Cqrs.Products.Queries
+namespace Spg.KaufMyStuff.DomainModel.Cqrs.Products.Queries
 {
     public class GetSingleProductRequestHandler : IRequestHandler<GetSingleProductRequest, ProductDto>
     {

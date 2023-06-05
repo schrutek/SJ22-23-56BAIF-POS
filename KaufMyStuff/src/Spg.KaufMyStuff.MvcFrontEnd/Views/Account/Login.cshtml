@@ -2,7 +2,8 @@
 @model LoginDto
 
 <form method="post">
-    <input type="text" value="@Model.UserName" placeholder="Username..." />
+    <label for="username">Username:</label>
+    <input id="username" type="text" asp-for="@Model.UserName" placeholder="Username..." />
     <button type="submit">Login</button>
 </form>
 

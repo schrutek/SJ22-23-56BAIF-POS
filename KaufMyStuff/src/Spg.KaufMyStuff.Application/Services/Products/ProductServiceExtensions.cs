@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spg.KaufMyStuff.Application.Services.Products
+namespace Spg.KaufMyStuff.DomainModel.Services.Products
 {
     public static class ProductServiceExtensions
     {

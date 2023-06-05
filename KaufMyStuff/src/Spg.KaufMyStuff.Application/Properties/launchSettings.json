@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Spg.KaufMyStuff.Application": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64724;http://localhost:64731"
+    }
+  }
+}

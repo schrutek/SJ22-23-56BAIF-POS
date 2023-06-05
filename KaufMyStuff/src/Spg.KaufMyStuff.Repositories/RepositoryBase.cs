@@ -2,6 +2,9 @@
 using Spg.KaufMyStuff.DomainModel.Exceptions;
 using Spg.KaufMyStuff.DomainModel.Interfaces;
 using Spg.KaufMyStuff.Infrastructure;
+using System.Linq.Expressions;
+using System.Linq;
+using Spg.KaufMyStuff.DomainModel.Models;
 
 namespace Spg.KaufMyStuff.Repositories
 {
@@ -66,9 +69,77 @@ namespace Spg.KaufMyStuff.Repositories
             return _db.Set<T>().SingleOrDefault(e => e.EMail == eMail);
         }
 
-        public IQueryable<TEntity> GetAll()
+        private IQueryable<TEntity> GetQueryable(
+            Expression<Func<TEntity, bool>>? filter,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? sortOrder,
+            string? includeNavigationProperty = null,
+            int? skip = null,
+            int? take = null)
         {
-            return _db.Set<TEntity>();
+            IQueryable<Product> products = _db.Set<Product>()
+                .Include("CategoryNavigation")
+                .Include("ShoppingCartItems");
+
+
+            IQueryable<TEntity> result = _db.Set<TEntity>();
+
+            if (filter != null)
+            {
+                result = result.Where(filter);
+            }
+            if (sortOrder != null)
+            {
+                result = sortOrder(result);
+            }
+
+            // CategoryNavigation;ShoppingCartItems
+            includeNavigationProperty = includeNavigationProperty ?? String.Empty;
+            foreach (var item in includeNavigationProperty.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                result = result.Include(item);
+            }
+
+            int count = result.Count();
+            if (skip.HasValue)
+            {
+                result = result.Skip(skip.Value);
+            }
+            if (take.HasValue)
+            {
+                result = result.Take(take.Value);
+            }
+            return result;
+        }
+
+        public IQueryable<TEntity> GetAll(
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+            string includeNavigationProperty = "",
+            int? skip = null,
+            int? take = null)
+        {
+            return GetQueryable(
+                null,
+                orderBy,
+                includeNavigationProperty,
+                skip,
+                take
+            );
+        }
+
+        public IQueryable<TEntity> Get(
+            Expression<Func<TEntity, bool>>? filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+            string includeNavigationProperty = "",
+            int? skip = null,
+            int? take = null)
+        {
+            return GetQueryable(
+                filter,
+                orderBy,
+                includeNavigationProperty,
+                skip,
+                take
+            );
         }
     }
 }

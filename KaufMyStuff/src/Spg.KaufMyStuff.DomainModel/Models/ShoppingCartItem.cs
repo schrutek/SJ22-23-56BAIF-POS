@@ -10,8 +10,9 @@ namespace Spg.KaufMyStuff.DomainModel.Models
     {
         public int ShoppingCartNavigationId { get; set; }
         public virtual ShoppingCart ShoppingCartNavigation { get; set; } = default!;
-        public int ProductNavigationId { get; set; }
+        public string ProductNavigationName { get; set; }
         public virtual Product ProductNavigation { get; set; } = default!;
+        public string ItemType { get; set; } = string.Empty;
 
         protected ShoppingCartItem()
         { }

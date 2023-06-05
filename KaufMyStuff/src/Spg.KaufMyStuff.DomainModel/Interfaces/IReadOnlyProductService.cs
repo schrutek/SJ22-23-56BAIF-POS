@@ -1,4 +1,5 @@
-﻿using Spg.KaufMyStuff.DomainModel.Models;
+﻿using Spg.KaufMyStuff.DomainModel.Dtos;
+using Spg.KaufMyStuff.DomainModel.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Spg.KaufMyStuff.DomainModel.Interfaces
         IQueryable<Product> Products { get; set; }
 
         IReadOnlyProductService Load();
-        IEnumerable<Product> GetData();
+        IEnumerable<ProductDto> GetData();
         IEnumerable<Product> GetDataPaged(int pageIndex, int pageSize);
     }
 }
